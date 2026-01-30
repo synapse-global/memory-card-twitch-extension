@@ -56,6 +56,8 @@ export const MemoryGame = ({
                 }}
                 className={cn(
                     `relative overflow-hidden flex flex-col backdrop-blur-xs transition-colors duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-red-50 rounded-2xl overflow-y-scroll`,
+                    !isMobile && "rounded-[0.375rem]",
+                    isMobile && "flex-1 basis-[0vh]!",
                 )}>
                 {!isMobile && (
                     <button
