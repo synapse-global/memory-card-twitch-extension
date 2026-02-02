@@ -10,6 +10,12 @@ html.font-desk,
     font-size: 1.1vw;
 }
 
+html.font-mobile,
+.font-mobile body,
+.font-mobile #root {
+    font-size: 3.5vw;
+}
+
 @media screen and (orientation: landscape) {
     html.font-mobile,
     .font-mobile body,
