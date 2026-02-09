@@ -1,4 +1,4 @@
-import { cn } from "../../../utils/cn";
+import { cn } from "../../../shared/lib/utils/cn";
 
 export const Board: React.FC<React.PropsWithChildren> = ({ children }) => {
     return (

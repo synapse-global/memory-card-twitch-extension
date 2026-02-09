@@ -1,8 +1,10 @@
 import { Resizable } from "re-resizable";
-import { cn } from "@/utils/cn";
+import { cn } from "@/shared/lib/utils/cn";
 import { useIsMobile } from "./hooks/useIsMobile";
-import { CloseArrow } from "./shared/icons/closeArrow";
 import { MemoryGame } from "./features/memory-game/ui/MemoryGame";
+import { AppHeader } from "./widgets/app-header/ui/AppHeader";
+import { useState } from "react";
+import { CurrentAppSection } from "./shared/model/types";
 
 /*
  * Main component for the Memory Game
@@ -17,6 +19,8 @@ export const AppContent = ({
     isAppAnimating: boolean;
 }) => {
     const { isMobile } = useIsMobile();
+    const [currentAppSection, setCurrentAppSection] =
+        useState<CurrentAppSection>("game");
 
     return (
         <div
@@ -53,16 +57,11 @@ export const AppContent = ({
                     !isMobile && "rounded-[0.375rem]",
                     isMobile && "flex-1 basis-[0vh]!",
                 )}>
-                {!isMobile && (
-                    <button
-                        onClick={handleClose}
-                        className="absolute w-[0.875rem] aspect-square top-[0.5rem] right-[0.5rem] flex transition-colors duration-200 hover:opacity-70 hover:cursor-pointer scale-x-90"
-                        aria-label="Close application">
-                        <CloseArrow className="-mr-0.5" />
-                        <CloseArrow />
-                    </button>
-                )}
-                <MemoryGame />
+                <AppHeader
+                    setCurrentAppSection={setCurrentAppSection}
+                    handleClose={handleClose}
+                />
+                {currentAppSection == "game" && <MemoryGame />}
             </Resizable>
         </div>
     );
