@@ -1,4 +1,4 @@
-import type { TCard, TCardId } from "../types";
+import type { TCard, TCardId } from "@/shared/model/types";
 
 /*
  * Creates a new set of cards for the game

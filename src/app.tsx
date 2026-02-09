@@ -1,8 +1,8 @@
-import { useFloatingButton } from "./hooks/useFloatingButton";
-import { useIsMobile } from "./hooks/useIsMobile";
+import { useFloatingButton } from "./widgets/floating-button/model/hooks/useFloatingButton";
+import { useIsMobile } from "./shared/model/hooks/useIsMobile";
 import { AppContent } from "./AppContent";
-import { FloatingButton } from "./shared/FloatingButton";
 import { useEffect } from "react";
+import { FloatingButton } from "./widgets/floating-button/ui/FloatingButton";
 
 export const App = () => {
     const {

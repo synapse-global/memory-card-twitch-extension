@@ -1,6 +1,6 @@
 import { Resizable } from "re-resizable";
 import { cn } from "@/shared/lib/utils/cn";
-import { useIsMobile } from "./hooks/useIsMobile";
+import { useIsMobile } from "./shared/model/hooks/useIsMobile";
 import { MemoryGame } from "./features/memory-game/ui/MemoryGame";
 import { AppHeader } from "./widgets/app-header/ui/AppHeader";
 import { useState } from "react";

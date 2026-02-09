@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { AnimationState, ButtonPosition } from "../shared/model/types";
+import { AnimationState, ButtonPosition } from "../../../../shared/model/types";
 
 export const useFloatingButton = () => {
     const [isGameVisible, setIsGameVisible] = useState(false);

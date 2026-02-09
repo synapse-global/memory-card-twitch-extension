@@ -1,7 +1,7 @@
 import { Board } from "./Board";
 import { Card } from "./Card";
 import { GameFooter } from "./GameFooter";
-import { useMemoryGame } from "../model/hook/useMemoryGame";
+import { useMemoryGame } from "../model/hooks/useMemoryGame";
 import { GameOver } from "./GameOver";
 
 export const MemoryGame = () => {

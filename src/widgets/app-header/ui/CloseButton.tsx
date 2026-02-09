@@ -1,4 +1,4 @@
-import { CloseArrow } from "@/shared/icons/closeArrow";
+import { CloseArrow } from "@/shared/ui/icons/closeArrow";
 
 export const CloseButton = ({ handleClose }: { handleClose: () => void }) => {
     return (
