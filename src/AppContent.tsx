@@ -1,27 +1,21 @@
 import { Resizable } from "re-resizable";
-import { Board } from "./components/Board";
-import { Card } from "./components/Card";
-import { GameFooter } from "./components/GameFooter";
-import { GameOver } from "./components/GameOver";
-import { useMemoryGame } from "./hooks/useMemoryGame";
-import { cn } from "./utils/cn";
+import { cn } from "@/utils/cn";
 import { useIsMobile } from "./hooks/useIsMobile";
-import { CloseArrow } from "./components/icons/closeArrow";
+import { CloseArrow } from "./shared/icons/closeArrow";
+import { MemoryGame } from "./features/memory-game/ui/MemoryGame";
 
 /*
  * Main component for the Memory Game
  * - Renders the game board, footer, and game-over message
  * - Uses the useMemoryGame hook to manage game state
  */
-export const MemoryGame = ({
+export const AppContent = ({
     handleClose,
     isAppAnimating,
 }: {
     handleClose: () => void;
     isAppAnimating: boolean;
 }) => {
-    const { gameState, flipCard, startNewGame, isCardFlipped } =
-        useMemoryGame();
     const { isMobile } = useIsMobile();
 
     return (
@@ -68,30 +62,7 @@ export const MemoryGame = ({
                         <CloseArrow />
                     </button>
                 )}
-                <div className="mx-auto w-100 flex flex-col items-center select-none">
-                    <Board>
-                        {Object.values(gameState.cards).map((cardDetails) => {
-                            const isFlipped = isCardFlipped(cardDetails.id);
-                            const isDisabled =
-                                gameState.status === "checking" ||
-                                cardDetails.isMatched;
-
-                            return (
-                                <Card
-                                    key={cardDetails.id}
-                                    cardDetails={cardDetails}
-                                    isFlipped={isFlipped}
-                                    isDisabled={isDisabled}
-                                    onClick={() => flipCard(cardDetails.id)}
-                                />
-                            );
-                        })}
-                    </Board>
-
-                    <GameFooter moves={gameState.moves} reset={startNewGame} />
-
-                    {gameState.status === "completed" && <GameOver />}
-                </div>
+                <MemoryGame />
             </Resizable>
         </div>
     );

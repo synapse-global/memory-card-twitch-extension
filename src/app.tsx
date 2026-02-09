@@ -1,7 +1,7 @@
 import { useFloatingButton } from "./hooks/useFloatingButton";
 import { useIsMobile } from "./hooks/useIsMobile";
-import { MemoryGame } from "./MemoryGame";
-import { FloatingButton } from "./components/FloatingButton";
+import { AppContent } from "./AppContent";
+import { FloatingButton } from "./shared/FloatingButton";
 import { useEffect } from "react";
 
 export const App = () => {
@@ -15,7 +15,7 @@ export const App = () => {
         handleClick,
         handleClose,
         buttonAnimation,
-        setIsGameVisible
+        setIsGameVisible,
     } = useFloatingButton();
 
     const { isMobile } = useIsMobile();
@@ -24,7 +24,7 @@ export const App = () => {
         if (isMobile) {
             setIsGameVisible(true);
         }
-    }, [setIsGameVisible, isMobile])
+    }, [setIsGameVisible, isMobile]);
 
     return (
         <div className="min-h-screen flex items-center">
@@ -38,7 +38,7 @@ export const App = () => {
                 />
             )}
             {isGameVisible && (
-                <MemoryGame
+                <AppContent
                     isAppAnimating={isAppAnimating}
                     handleClose={handleClose}
                 />

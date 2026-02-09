@@ -1,6 +1,6 @@
 
+import { cn } from "@/utils/cn";
 import React, { useState } from "react";
-import { cn } from "../utils/cn";
 
 type ImageSuspenseProps = {
   fallback: React.ReactNode;

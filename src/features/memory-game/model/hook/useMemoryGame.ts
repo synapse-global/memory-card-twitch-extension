@@ -1,7 +1,7 @@
+import { TAction, TCardId, TGameState } from "@/types";
 import { useEffect, useReducer } from "react";
-import type { TAction, TCardId, TGameState } from "../types";
-import { createCards } from "../utils/createCards";
-import { useTimeout } from "./useTimeout";
+import { createCards } from "../../lib/utils/createCards";
+import { useTimeout } from "@/hooks/useTimeout";
 
 const gameReducer = (state: TGameState, action: TAction): TGameState => {
   /*

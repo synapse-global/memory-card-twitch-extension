@@ -1,6 +1,7 @@
-import { UseFloatingButtonProps } from "../types";
-import { cn } from "../utils/cn";
+import { UseFloatingButtonProps } from "@/types";
+import { cn } from "@/utils/cn";
 import { PlayIcon } from "./icons/playIcon";
+
 
 
 
