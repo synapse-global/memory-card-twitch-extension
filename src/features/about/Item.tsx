@@ -1,9 +1,7 @@
-import React from "react";
-
 export const Item = () => {
     return (
         <section className="w-full flex flex-col gap-[0.5rem]">
-            <h2 className="font-medium font-gilroy text-[1rem] leading-[1.5] font-medium">
+            <h2 className="font-medium font-gilroy text-[1rem] leading-[1.5]">
                 09 февраля 2026
             </h2>
             <a
@@ -74,7 +72,7 @@ export const Item = () => {
                                 <span className="font-gilroy text-[#A1A1AA] leading-[1.33rem]">
                                     П1
                                 </span>
-                                <h2 className="font-gilroy text-[1.17rem] leading-[1rem] font-bold leading-[1.67rem]">
+                                <h2 className="font-gilroy text-[1.17rem] font-bold leading-[1.67rem]">
                                     2.45
                                 </h2>
                             </div>
@@ -86,7 +84,7 @@ export const Item = () => {
                                 <span className="font-gilroy text-[#A1A1AA] leading-[1.33rem]">
                                     П2
                                 </span>
-                                <h2 className="font-gilroy text-[1.17rem] leading-[1rem] font-bold leading-[1.67rem]">
+                                <h2 className="font-gilroy text-[1.17rem] font-bold leading-[1.67rem]">
                                     2.45
                                 </h2>
                             </div>
