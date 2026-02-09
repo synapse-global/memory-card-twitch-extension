@@ -5,6 +5,7 @@ import { CurrentAppSection } from "@/shared/model/types";
 
 type AppHeaderProps = {
     handleClose: () => void;
+    currentAppSection: CurrentAppSection;
     setCurrentAppSection: React.Dispatch<
         React.SetStateAction<CurrentAppSection>
     >;
@@ -12,6 +13,7 @@ type AppHeaderProps = {
 
 export const AppHeader = ({
     handleClose,
+    currentAppSection,
     setCurrentAppSection,
 }: AppHeaderProps) => {
     const { isMobile } = useIsMobile();
@@ -19,7 +21,7 @@ export const AppHeader = ({
     return (
         <header className="relative px-5 py-4">
             {!isMobile && <CloseButton handleClose={handleClose} />}
-            <Navbar setCurrentAppSection={setCurrentAppSection} />
+            <Navbar currentAppSection={currentAppSection} setCurrentAppSection={setCurrentAppSection} />
         </header>
     );
 };

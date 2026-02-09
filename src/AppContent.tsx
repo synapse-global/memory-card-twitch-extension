@@ -5,6 +5,7 @@ import { MemoryGame } from "./features/memory-game/ui/MemoryGame";
 import { AppHeader } from "./widgets/app-header/ui/AppHeader";
 import { useState } from "react";
 import { CurrentAppSection } from "./shared/model/types";
+import { About } from "./features/about/ui/About";
 
 /*
  * Main component for the Memory Game
@@ -20,7 +21,7 @@ export const AppContent = ({
 }) => {
     const { isMobile } = useIsMobile();
     const [currentAppSection, setCurrentAppSection] =
-        useState<CurrentAppSection>("game");
+        useState<CurrentAppSection>("about");
 
     return (
         <div
@@ -58,10 +59,12 @@ export const AppContent = ({
                     isMobile && "flex-1 basis-[0vh]!",
                 )}>
                 <AppHeader
+                    currentAppSection={currentAppSection}
                     setCurrentAppSection={setCurrentAppSection}
                     handleClose={handleClose}
                 />
                 {currentAppSection == "game" && <MemoryGame />}
+                {currentAppSection == "about" && <About />}
             </Resizable>
         </div>
     );
