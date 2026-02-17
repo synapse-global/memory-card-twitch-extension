@@ -4,8 +4,8 @@ import { useIsMobile } from "./shared/model/hooks/useIsMobile";
 import { MemoryGame } from "./features/memory-game/ui/MemoryGame";
 import { AppHeader } from "./widgets/app-header/ui/AppHeader";
 import { useState } from "react";
-import { CurrentAppSection } from "./shared/model/types";
 import { About } from "./features/about/ui/About";
+import { ActiveTab, Tabs } from "./shared/model/types/ui";
 
 /*
  * Main component for the Memory Game
@@ -21,7 +21,7 @@ export const AppContent = ({
 }) => {
     const { isMobile } = useIsMobile();
     const [currentAppSection, setCurrentAppSection] =
-        useState<CurrentAppSection>("about");
+        useState<ActiveTab>("about");
 
     return (
         <div
@@ -54,7 +54,7 @@ export const AppContent = ({
                     bottomRight: false,
                 }}
                 className={cn(
-                    `relative overflow-hidden flex flex-col backdrop-blur-xs transition-colors duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-red-50 rounded-2xl`,
+                    `relative overflow-hidden flex flex-col backdrop-blur-xs transition-colors duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] bg-red-50 rounded-2xl app`,
                     !isMobile && "rounded-[0.375rem]",
                     isMobile && "flex-1 basis-[0vh]!",
                 )}>
@@ -63,8 +63,8 @@ export const AppContent = ({
                     setCurrentAppSection={setCurrentAppSection}
                     handleClose={handleClose}
                 />
-                {currentAppSection == "game" && <MemoryGame />}
-                {currentAppSection == "about" && <About />}
+                {currentAppSection == Tabs.GAME && <MemoryGame />}
+                {currentAppSection == Tabs.ABOUT && <About />}
             </Resizable>
         </div>
     );

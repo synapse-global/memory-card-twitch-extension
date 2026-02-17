@@ -1,9 +1,9 @@
 import { cn } from "@/shared/lib/utils/cn";
-import { CurrentAppSection } from "@/shared/model/types";
+import { ActiveTab } from "@/shared/model/types/ui";
 import { Button } from "@/shared/ui/Button";
 import React from "react";
 
-const NAVBAR_ITEMS: { title: string; link: CurrentAppSection }[] = [
+const NAVBAR_ITEMS: { title: string; link: ActiveTab }[] = [
     {
         title: "Game",
         link: "game",
@@ -15,9 +15,9 @@ const NAVBAR_ITEMS: { title: string; link: CurrentAppSection }[] = [
 ];
 
 type NavbarProps = {
-    currentAppSection: CurrentAppSection;
+    currentAppSection: ActiveTab;
     setCurrentAppSection: React.Dispatch<
-        React.SetStateAction<CurrentAppSection>
+        React.SetStateAction<ActiveTab>
     >;
 };
 
@@ -32,7 +32,7 @@ export const Navbar = ({
                     <li key={item.link}>
                         <Button
                             className={cn(
-                                "no-underline",
+                                "no-underline focus:ring-0 focus:ring-offset-0",
                                 item.link === currentAppSection && "underline hover:underline",
                             )}
                             onClick={() => setCurrentAppSection(item.link)}>

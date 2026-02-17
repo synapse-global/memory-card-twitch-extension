@@ -1,6 +1,6 @@
 import { UseFloatingButtonProps } from "@/shared/model/types";
 import { cn } from "@/shared/lib/utils/cn";
-import { PlayIcon } from "./icons/playIcon";
+import { PlayIcon } from "@/shared/ui/icons/playIcon";
 
 export const FloatingButton = ({
     handleClick,

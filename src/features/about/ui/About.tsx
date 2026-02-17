@@ -1,20 +1,14 @@
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { Item } from "../Item";
-
-const data = "<schedule />";
+import { useCombinedDataStore } from "@/shared/stores/useCombinedDataStore";
 
 export const About = () => {
-    return (
-        <div className="w-full flex px-3">
-            <Markdown
-                rehypePlugins={[rehypeRaw]}
-                components={{
-                    // @ts-expect-error
-                    schedule: Item,
-                }}>
-                {data}
-            </Markdown>
-        </div>
-    );
+  const { about } = useCombinedDataStore((state) => ({
+    about: state.about,
+  }));
+  return (
+    <div className="w-full flex px-3">
+      <Markdown rehypePlugins={[rehypeRaw]}>{about?.content}</Markdown>
+    </div>
+  );
 };

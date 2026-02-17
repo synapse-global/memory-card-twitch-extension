@@ -1,13 +1,13 @@
 import { CloseButton } from "./CloseButton";
 import { useIsMobile } from "@/shared/model/hooks/useIsMobile";
 import { Navbar } from "./Navbar";
-import { CurrentAppSection } from "@/shared/model/types";
+import { ActiveTab } from "@/shared/model/types/ui";
 
 type AppHeaderProps = {
     handleClose: () => void;
-    currentAppSection: CurrentAppSection;
+    currentAppSection: ActiveTab;
     setCurrentAppSection: React.Dispatch<
-        React.SetStateAction<CurrentAppSection>
+        React.SetStateAction<ActiveTab>
     >;
 };
 
