@@ -7,7 +7,6 @@ import "./index.css";
 
 const queryClient = new QueryClient();
 
-// biome-ignore lint/style/noNonNullAssertion: <explanation>
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
         <QueryClientProvider client={queryClient}>
