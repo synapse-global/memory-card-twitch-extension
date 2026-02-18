@@ -5,72 +5,72 @@ import { useTwitchAuth } from "./shared/model/hooks/twitch/useTwitchAuth";
 import { useCombinedDataHTTP } from "./shared/model/hooks/api/useCombinedData";
 import { api } from "./shared/api/api";
 import { useQuery } from "@tanstack/react-query";
-import { useUiStore } from "./shared/stores/useUiStore"; 
+import { useUiStore } from "./shared/stores/useUiStore";
 import { shallow } from "zustand/shallow";
 import { useRootSetup } from "./shared/model/hooks/useRootSetup";
 import { useCombinedDataStore } from "./shared/stores/useCombinedDataStore";
+import Markdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 
 export const App = () => {
-    const { setIsMobile } = useUiStore(
-        (state) => ({
-            isMobile: state.isMobile,
-            setIsMobile: state.setIsMobile,
-        }),
-        shallow,
-    );
+  const { setIsMobile } = useUiStore(
+    (state) => ({
+      isMobile: state.isMobile,
+      setIsMobile: state.setIsMobile,
+    }),
+    shallow,
+  );
 
-    const { isCombinedDataReceived } = useCombinedDataStore((state) => ({
-        isCombinedDataReceived: state.isReceived,
-    }));
+  const { about, isCombinedDataReceived } = useCombinedDataStore((state) => ({
+    about: state.about,
+    isCombinedDataReceived: state.isReceived,
+  }));
 
-    const { jwt, viewerData } = useTwitchAuth();
+  const { jwt, viewerData } = useTwitchAuth();
 
-    const { isSuccess: viewerCreated } = useQuery({
-        queryKey: ["viewer", jwt, viewerData],
-        queryFn: () => api.createViewer(viewerData!, jwt),
-        enabled: !!jwt && !!viewerData,
-        retry: 2,
-        retryDelay: 1000,
-        refetchOnWindowFocus: false,
-    });
+  const { isSuccess: viewerCreated } = useQuery({
+    queryKey: ["viewer", jwt, viewerData],
+    queryFn: () => api.createViewer(viewerData!, jwt),
+    enabled: !!jwt && !!viewerData,
+    retry: 2,
+    retryDelay: 1000,
+    refetchOnWindowFocus: false,
+  });
 
-    useCombinedDataHTTP({ viewerCreated });
-  
+  useCombinedDataHTTP({ viewerCreated });
 
-    const {
-        isOpen,
-        isGameVisible,
-        isAppAnimating,
-        buttonPosition,
-        isDragging,
-        handleMouseDown,
-        handleClick,
-        handleClose,
-        buttonAnimation,
-        setIsGameVisible,
-    } = useFloatingButton();
+  const {
+    isOpen,
+    isGameVisible,
+    isAppAnimating,
+    buttonPosition,
+    isDragging,
+    handleMouseDown,
+    handleClick,
+    handleClose,
+    buttonAnimation,
+    setIsGameVisible,
+  } = useFloatingButton();
 
-    useRootSetup({ setIsMobile, setIsGameVisible });
+  useRootSetup({ setIsMobile, setIsGameVisible });
 
-    if (!isCombinedDataReceived) return null;
+  if (!isCombinedDataReceived) return null;
 
-    return (
-        <div className="min-h-screen flex items-center">
-            {!isGameVisible && !isOpen && (
-                <FloatingButton
-                    buttonAnimation={buttonAnimation}
-                    buttonPosition={buttonPosition}
-                    handleClick={handleClick}
-                    handleMouseDown={handleMouseDown}
-                    isDragging={isDragging}
-                />
-            )}
-            {isGameVisible && (
-                <AppContent
-                    isAppAnimating={isAppAnimating}
-                    handleClose={handleClose}
-                />
-            )}
-        </div>
-    );
+  return (
+    <div className="app-content min-h-screen flex items-center">
+      <Markdown rehypePlugins={[rehypeRaw]}>{about?.content}</Markdown>
+      {!isGameVisible && !isOpen && (
+        <FloatingButton
+          buttonAnimation={buttonAnimation}
+          buttonPosition={buttonPosition}
+          handleClick={handleClick}
+          handleMouseDown={handleMouseDown}
+          isDragging={isDragging}
+        />
+      )}
+      {isGameVisible && (
+        <AppContent isAppAnimating={isAppAnimating} handleClose={handleClose} />
+      )}
+    </div>
+  );
 };

@@ -51,7 +51,7 @@ export const useTwitchAuth = (enabled: boolean = true) => {
 
       // const token = auth.token;
       const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzEzMzczNzEsIm9wYXF1ZV91c2VyX2lkIjoiVTEzOTc1NjU5NzQiLCJ1c2VyX2lkIjoiMTM5NzU2NTk3NCIsImNoYW5uZWxfaWQiOiIxMzk3NTY1OTc0Iiwicm9sZSI6ImJyb2FkY2FzdGVyIiwiaXNfdW5saW5rZWQiOmZhbHNlLCJwdWJzdWJfcGVybXMiOnsibGlzdGVuIjpbImJyb2FkY2FzdCIsIndoaXNwZXItVTEzOTc1NjU5NzQiLCJnbG9iYWwiXSwic2VuZCI6WyJicm9hZGNhc3QiLCJ3aGlzcGVyLSoiXX19.QCbS9T4ot5eTGoTiKIggKyBR-b6QLidsGKHNGR0W6q8";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE0MDc3NjEsIm9wYXF1ZV91c2VyX2lkIjoiVTE5Njg1MTQ3OCIsInVzZXJfaWQiOiIxOTY4NTE0NzgiLCJjaGFubmVsX2lkIjoiMTk2ODUxNDc4Iiwicm9sZSI6ImJyb2FkY2FzdGVyIiwiaXNfdW5saW5rZWQiOmZhbHNlLCJwdWJzdWJfcGVybXMiOnsibGlzdGVuIjpbImJyb2FkY2FzdCIsIndoaXNwZXItVTQ0ODUwMzgwOCIsImdsb2JhbCJdLCJzZW5kIjpbImJyb2FkY2FzdCIsIndoaXNwZXItKiJdfX0.3U0T_y3otYG6FApLhmc5HiZnFQdmpvB-ZSlU_ad4byo";
 
       setJwt(token);
 

@@ -19,7 +19,7 @@ export const AppHeader = ({
     const { isMobile } = useIsMobile();
 
     return (
-        <header className="relative px-5 py-4">
+        <header className="app-header relative px-5 py-4">
             {!isMobile && <CloseButton handleClose={handleClose} />}
             <Navbar
                 currentAppSection={currentAppSection}
