@@ -49,9 +49,7 @@ export const useTwitchAuth = (enabled: boolean = true) => {
 
       const { channelId, clientId, helixToken } = auth;
 
-      // const token = auth.token;
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE0MDc3NjEsIm9wYXF1ZV91c2VyX2lkIjoiVTE5Njg1MTQ3OCIsInVzZXJfaWQiOiIxOTY4NTE0NzgiLCJjaGFubmVsX2lkIjoiMTk2ODUxNDc4Iiwicm9sZSI6ImJyb2FkY2FzdGVyIiwiaXNfdW5saW5rZWQiOmZhbHNlLCJwdWJzdWJfcGVybXMiOnsibGlzdGVuIjpbImJyb2FkY2FzdCIsIndoaXNwZXItVTQ0ODUwMzgwOCIsImdsb2JhbCJdLCJzZW5kIjpbImJyb2FkY2FzdCIsIndoaXNwZXItKiJdfX0.3U0T_y3otYG6FApLhmc5HiZnFQdmpvB-ZSlU_ad4byo";
+      const token = auth.token;
 
       setJwt(token);
 

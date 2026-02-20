@@ -26,7 +26,7 @@ export const Navbar = ({
     setCurrentAppSection,
 }: NavbarProps) => {
     return (
-        <nav className="font-system text-sm">
+        <nav className="app-navbar font-system text-sm">
             <ul className="flex items-center gap-5">
                 {NAVBAR_ITEMS.map((item) => (
                     <li key={item.link}>
