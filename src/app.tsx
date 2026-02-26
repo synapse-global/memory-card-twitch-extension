@@ -58,7 +58,9 @@ export const App = () => {
 
   return (
     <div className="app-content min-h-screen flex items-center">
-      <Markdown rehypePlugins={[rehypeRaw]}>{about?.content}</Markdown>
+      <div className="hidden">
+        <Markdown rehypePlugins={[rehypeRaw]}>{about?.content}</Markdown>
+      </div>
       {!isGameVisible && !isOpen && (
         <FloatingButton
           buttonAnimation={buttonAnimation}
