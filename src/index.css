@@ -30,6 +30,14 @@ body {
     padding: 0;
 }
 
+:root {
+    --app-background: oklch(0.971 0.013 17.38);
+}
+
+@theme {
+    --color-app-background: var(--app-background);
+}
+
 /* press-start-2p-latin-400-normal */
 @font-face {
     font-family: "Press Start 2P";

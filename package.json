@@ -7,13 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "format": "biome format --write ./src",
-    "lint": "biome lint ./src",
     "preview": "vite preview",
     "prepare": "husky"
   },
   "dependencies": {
     "@fontsource/press-start-2p": "^5.2.5",
     "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/react-query": "^5.90.21",
     "@vitejs/plugin-react": "^5.1.2",
     "clsx": "^2.1.1",
     "motion": "^12.5.0",
@@ -21,8 +21,12 @@
     "react": "^19.0.0",
     "react-confetti": "^6.1.0",
     "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
     "react-use": "^17.5.1",
-    "tailwind-merge": "^3.0.2"
+    "rehype-raw": "^7.0.0",
+    "tailwind-merge": "^3.0.2",
+    "use-sync-external-store": "^1.6.0",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

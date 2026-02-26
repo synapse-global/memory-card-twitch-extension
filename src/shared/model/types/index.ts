@@ -86,6 +86,8 @@ export interface TwitchExtension {
   onAuthorized: (callback: (auth: TwitchAuth) => void) => void;
 }
 
+export type CurrentAppSection = "game" | "about";
+
 
 declare global {
   interface Window {

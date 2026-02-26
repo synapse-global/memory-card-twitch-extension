@@ -1,48 +1,78 @@
-import { useFloatingButton } from "./hooks/useFloatingButton";
-import { useIsMobile } from "./hooks/useIsMobile";
-import { MemoryGame } from "./MemoryGame";
-import { FloatingButton } from "./components/FloatingButton";
-import { useEffect } from "react";
+import { useFloatingButton } from "./widgets/floating-button/model/hooks/useFloatingButton";
+import { AppContent } from "./AppContent";
+import { FloatingButton } from "./widgets/floating-button/ui/FloatingButton";
+import { useTwitchAuth } from "./shared/model/hooks/twitch/useTwitchAuth";
+import { useCombinedDataHTTP } from "./shared/model/hooks/api/useCombinedData";
+import { api } from "./shared/api/api";
+import { useQuery } from "@tanstack/react-query";
+import { useUiStore } from "./shared/stores/useUiStore";
+import { shallow } from "zustand/shallow";
+import { useRootSetup } from "./shared/model/hooks/useRootSetup";
+import { useCombinedDataStore } from "./shared/stores/useCombinedDataStore";
+import Markdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 
 export const App = () => {
-    const {
-        isOpen,
-        isGameVisible,
-        isAppAnimating,
-        buttonPosition,
-        isDragging,
-        handleMouseDown,
-        handleClick,
-        handleClose,
-        buttonAnimation,
-        setIsGameVisible
-    } = useFloatingButton();
+  const { setIsMobile } = useUiStore(
+    (state) => ({
+      isMobile: state.isMobile,
+      setIsMobile: state.setIsMobile,
+    }),
+    shallow,
+  );
 
-    const { isMobile } = useIsMobile();
+  const { about, isCombinedDataReceived } = useCombinedDataStore((state) => ({
+    about: state.about,
+    isCombinedDataReceived: state.isReceived,
+  }));
 
-    useEffect(() => {
-        if (isMobile) {
-            setIsGameVisible(true);
-        }
-    }, [setIsGameVisible, isMobile])
+  const { jwt, viewerData } = useTwitchAuth();
 
-    return (
-        <div className="min-h-screen flex items-center">
-            {!isMobile && !isGameVisible && !isOpen && (
-                <FloatingButton
-                    buttonAnimation={buttonAnimation}
-                    buttonPosition={buttonPosition}
-                    handleClick={handleClick}
-                    handleMouseDown={handleMouseDown}
-                    isDragging={isDragging}
-                />
-            )}
-            {isGameVisible && (
-                <MemoryGame
-                    isAppAnimating={isAppAnimating}
-                    handleClose={handleClose}
-                />
-            )}
-        </div>
-    );
+  const { isSuccess: viewerCreated } = useQuery({
+    queryKey: ["viewer", jwt, viewerData],
+    queryFn: () => api.createViewer(viewerData!, jwt),
+    enabled: !!jwt && !!viewerData,
+    retry: 2,
+    retryDelay: 1000,
+    refetchOnWindowFocus: false,
+  });
+
+  useCombinedDataHTTP({ viewerCreated });
+
+  const {
+    isOpen,
+    isGameVisible,
+    isAppAnimating,
+    buttonPosition,
+    isDragging,
+    handleMouseDown,
+    handleClick,
+    handleClose,
+    buttonAnimation,
+    setIsGameVisible,
+  } = useFloatingButton();
+
+  useRootSetup({ setIsMobile, setIsGameVisible });
+
+  if (!isCombinedDataReceived) return null;
+
+  return (
+    <div className="app-content min-h-screen flex items-center">
+      <div className="hidden">
+        <Markdown rehypePlugins={[rehypeRaw]}>{about?.content}</Markdown>
+      </div>
+      {!isGameVisible && !isOpen && (
+        <FloatingButton
+          buttonAnimation={buttonAnimation}
+          buttonPosition={buttonPosition}
+          handleClick={handleClick}
+          handleMouseDown={handleMouseDown}
+          isDragging={isDragging}
+        />
+      )}
+      {isGameVisible && (
+        <AppContent isAppAnimating={isAppAnimating} handleClose={handleClose} />
+      )}
+    </div>
+  );
 };
